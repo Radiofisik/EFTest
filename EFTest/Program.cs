@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using EFTest.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFTest
@@ -8,36 +11,32 @@ namespace EFTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //            AddData();
+
+            //            var context = new BloggingContext();
+            //            var blogs = context.Blogs.Include(_=>_.Posts).ToList();
+
+            var context = new BloggingContext();
+            var firstBlog = context.Blogs.First();
+            context.Entry(firstBlog).Collection(_=>_.Posts).Load();
+            var posts = firstBlog.Posts;
         }
 
-    }
+        private static void AddData()
+        {
+            var blog = new Blog()
+            {
+                Url = "https://radiofisik.ru/", Posts = new List<Post>()
+                {
+                    new Post() {Title = "About this blog", Content = "Github pages is great"},
+                    new Post() {Title = "EF", Content = "ef content"}
+                }
+            };
 
-    public class BloggingContext : DbContext
-    {
-        public DbSet<Blog> Blogs { get; set; }
+            var context = new BloggingContext();
 
-        public DbSet<Post> Posts { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=docker;Database=testdb;Username=postgres;Password=postgres");
-    }
-
-    public class Blog
-    {
-        public int BlogId { get; set; }
-        public string Url { get; set; }
-
-        public List<Post> Posts { get; set; }
-    }
-
-    public class Post
-    {
-        public int PostId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
+            context.Blogs.Add(blog);
+            context.SaveChanges();
+        }
     }
 }
