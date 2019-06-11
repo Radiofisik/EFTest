@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using System.Threading.Tasks;
 using EFTest.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,20 +10,13 @@ namespace EFTest
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            //            AddData();
-
-            //            var context = new BloggingContext();
-            //            var blogs = context.Blogs.Include(_=>_.Posts).ToList();
-
-            var context = new BloggingContext();
-            var firstBlog = context.Blogs.First();
-            context.Entry(firstBlog).Collection(_=>_.Posts).Load();
-            var posts = firstBlog.Posts;
+            //seed data
+            await AddData();
         }
 
-        private static void AddData()
+        private static async Task AddData()
         {
             var blog = new Blog()
             {
@@ -34,6 +28,7 @@ namespace EFTest
             };
 
             var context = new BloggingContext();
+            await context.Database.MigrateAsync();
 
             context.Blogs.Add(blog);
             context.SaveChanges();
