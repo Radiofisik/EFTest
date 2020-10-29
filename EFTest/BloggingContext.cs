@@ -13,6 +13,6 @@ namespace EFTest
         public DbSet<Post> Posts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=192.168.99.100;Database=testdb;Username=postgres;Password=postgres");
+            => optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=testdb;Username=postgres;Password=postgres");
     }
 }

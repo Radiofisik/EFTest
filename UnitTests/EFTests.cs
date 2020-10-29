@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using EFTest;
-using EFTest.Dtos;
 using EFTest.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -100,46 +99,46 @@ namespace UnitTests
             context.SaveChanges();
         }
 
-        [Fact]
-        public void FilterTest()
-        {
-            var context = new BloggingContext();
+        //[Fact]
+        //public void FilterTest()
+        //{
+        //    var context = new BloggingContext();
 
-            Expression<Func<BlogDto, bool>> predicate = x => x.Url.Contains("238");
+        //    Expression<Func<BlogDto, bool>> predicate = x => x.Url.Contains("238");
 
-            Expression<Func<Blog, BlogDto>> projection = x => new BlogDto()
-            {
-                BlogId = x.BlogId,
-                Url = x.Url + "238"
-            };
+        //    Expression<Func<Blog, BlogDto>> projection = x => new BlogDto()
+        //    {
+        //        BlogId = x.BlogId,
+        //        Url = x.Url + "238"
+        //    };
 
-            var blogs = context.Blogs
-                .Select(projection)
-                .Where(predicate)
-                .ToList();
+        //    var blogs = context.Blogs
+        //        .Select(projection)
+        //        .Where(predicate)
+        //        .ToList();
 
-            Assert.NotNull(blogs);
-        }
+        //    Assert.NotNull(blogs);
+        //}
 
-        [Fact]
-        public void JoinFilterTest()
-        {
-            var context = new BloggingContext();
+        //[Fact]
+        //public void JoinFilterTest()
+        //{
+        //    var context = new BloggingContext();
 
-            Expression<Func<Blog, bool>> predicate = x => x.Posts.Any(post => post.Content.Contains("tool"));
+        //    Expression<Func<Blog, bool>> predicate = x => x.Posts.Any(post => post.Content.Contains("tool"));
 
-            Expression<Func<Blog, BlogDto>> projection = x => new BlogDto()
-            {
-                BlogId = x.BlogId,
-                Url = x.Url
-            };
+        //    Expression<Func<Blog, BlogDto>> projection = x => new BlogDto()
+        //    {
+        //        BlogId = x.BlogId,
+        //        Url = x.Url
+        //    };
 
-            var blogs = context.Blogs
-                .Where(predicate)
-                .Select(projection)
-                .ToList();
+        //    var blogs = context.Blogs
+        //        .Where(predicate)
+        //        .Select(projection)
+        //        .ToList();
 
-            Assert.NotNull(blogs);
-        }
+        //    Assert.NotNull(blogs);
+        //}
     }
 }

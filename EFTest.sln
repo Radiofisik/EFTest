@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFTest", "EFTest\EFTest.csproj", "{A7BE34F6-F100-41DA-8FF2-1F7791E99D8D}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4ED48781-7BA9-4258-B0C3-5DFCCDD499CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{583775A9-0803-43CE-AB3B-DA9C57C315F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{583775A9-0803-43CE-AB3B-DA9C57C315F9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{209FB79C-CEDA-409B-AAD7-12E1D560B346}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +23,6 @@ Global
 		{A7BE34F6-F100-41DA-8FF2-1F7791E99D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7BE34F6-F100-41DA-8FF2-1F7791E99D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7BE34F6-F100-41DA-8FF2-1F7791E99D8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ED48781-7BA9-4258-B0C3-5DFCCDD499CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ED48781-7BA9-4258-B0C3-5DFCCDD499CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ED48781-7BA9-4258-B0C3-5DFCCDD499CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ED48781-7BA9-4258-B0C3-5DFCCDD499CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{583775A9-0803-43CE-AB3B-DA9C57C315F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{583775A9-0803-43CE-AB3B-DA9C57C315F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{583775A9-0803-43CE-AB3B-DA9C57C315F9}.Release|Any CPU.ActiveCfg = Release|Any CPU

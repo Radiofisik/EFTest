@@ -1,12 +1,6 @@
 version: '3.4'
 
 services:
-  eftest:
-    image: ${DOCKER_REGISTRY-}eftest
-    build:
-      context: .
-      dockerfile: EFTest/Dockerfile
-
   postgres:
     image: postgres:11.2-alpine
     shm_size: 256M
@@ -19,16 +13,5 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-    volumes:
-       - pgadmin:/root/.pgadmin
-    ports:
-      - "${PGADMIN_PORT:-5050}:80"
-
 volumes:
   pg_auth_data:
-  pgadmin:
