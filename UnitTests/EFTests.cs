@@ -1,15 +1,40 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using EFTest;
 using EFTest.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Xunit;
 
 namespace UnitTests
 {
+    public class BlogDto
+    {
+        public string Name { get; set; }
+
+        public IEnumerable<string> Tags { get; set; }
+    }
+
     public class EFTests
     {
+        [Fact]
+        public void ManyMany()
+        {
+            var context = new BloggingContext();
+            var posts = context.Blogs
+                .Select(b => new BlogDto() {Name = b.Url, Tags = b.Posts.Select(p => p.Title)})
+                .Where(b=>b.Tags.Any(tag=>tag.StartsWith("About")) || b.Tags.Any(tag => tag.StartsWith("Git")))
+                ;
+            var sql = IQueryableHelpers.ToSql(posts);
+            Assert.NotNull(posts)
+                ;
+
+        }
+
+
+
         [Fact]
         public void IncludeTest()
         {

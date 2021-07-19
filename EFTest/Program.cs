@@ -30,6 +30,8 @@ namespace EFTest
             var context = new BloggingContext();
             await context.Database.MigrateAsync();
 
+            var posts = context.Blogs.Select(x => x.Posts).ToListAsync();
+
             context.Blogs.Add(blog);
             context.SaveChanges();
         }
